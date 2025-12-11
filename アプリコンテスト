@@ -6,3 +6,18 @@ def main():
     pygame.init()
     screen = pygame.display.set_modo((400, 300))
     pygame.display.set_caption("逃げるはアリだが役に立つ")
+
+    while (1):
+        screen.fill((0,0,0))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+
+
+
+
+
+if__name__ == "__main__":
+    main()
