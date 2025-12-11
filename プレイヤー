@@ -1,2 +1,7 @@
 import sys
 import pygame as pg
+
+class ant(pygame.sprite.Sprite):
+  def __init__ (self,  ) #画像ファイルを入力
+    self.image = pygame.image.load(   ).convert()
+    self.rect = self.image.get_rect()
