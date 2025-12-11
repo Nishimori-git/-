@@ -1,3 +1,8 @@
-a
-b
-test
+import pygame
+from pygame.locals import*
+import sys
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_modo((400, 300))
+    pygame.display.set_caption("逃げるはアリだが役に立つ")
