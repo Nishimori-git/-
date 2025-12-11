@@ -1,1 +1,138 @@
+import pygame as pg
 
+import config
+
+"""画面表示用のモジュール
+
+ゲームの状態を画面に表示する
+"""
+
+
+forefront = 10  # 最前面レイヤーの値
+
+
+class DisplayText(pg.sprite.Sprite):
+    """ 文章を表示するためのクラス（簡易版）
+
+    デバッグ用です
+    """
+    def __init__(self, layer, cx, cy, defaultmsg="", fontsize=20, color=(255, 255, 255), lifetime=1010101):
+        self._layer = layer
+        self.msg = defaultmsg
+        super().__init__(self.containers)
+        self.font = pg.font.Font(None, fontsize)
+        self.font.set_italic(1)
+        # self.color = pg.Color("white")
+        self.color = color
+        self.image = None
+        self.rect = None
+        self.lifetime = lifetime
+        self.update()
+        self.rect = self.image.get_rect(centerx=cx, centery=cy)
+
+        print(defaultmsg)
+
+    def update(self):
+        self.lifetime -= 1
+        if self.lifetime <= 0:
+            self.kill()
+        self.set_msg()
+        self.set_img()
+
+    def set_img(self):
+        self.image = self.font.render(self.msg, 0, self.color)
+    
+    def set_msg(self):
+        # 表示する文字列を取得するメソッド
+        assert self.msg, 'set self.msg'
+        return self.msg
+
+
+class Bestscore(DisplayText):
+    def __init__(self):
+        super().__init__(10, 640, 60, fontsize = 100)
+
+    def set_msg(self):
+        self.msg = 'BEST SCORE'
+
+
+class FPS(DisplayText):
+    def __init__(self, clock, layer=forefront):
+        self.clock = clock
+        super().__init__(layer, config.SCREEN_WIDTH - 50, config.SCREEN_HEIGHT - 20)
+
+    def set_msg(self):
+        self.msg = '{:.2f}'.format(self.clock.get_fps()) + ' FPS'
+
+
+class PlayerInfo(DisplayText):
+    def __init__(self, player, layer=forefront):
+        self.player = player
+        super().__init__(layer, 65, config.SCREEN_HEIGHT - 20)
+
+    def set_msg(self):
+        self.msg = 'LIFE : ' + str(self.player.stock) + '  Item : ' + str(self.player.item_stack)
+
+
+class Score(DisplayText):
+    def __init__(self, layer=forefront):
+        super().__init__(layer, 40, 15)
+    
+    def set_msg(self):
+        self.msg = 'score : ' + str(config.score)
+
+
+class Counter(DisplayText):
+    """ 画面上のオブジェクトの個数を表示するためのクラス
+
+    キーワード引数として pg.sprite.Group クラスのインスタンスを渡すと、そのグループ内のオブジェクトの個数を表示します。
+    引数の変数名が表示の際のラベルになる
+    """    
+    def __init__(self, layer = forefront, **groups):
+        self.groups = groups
+        super().__init__(layer, config.SCREEN_WIDTH - 130, 15)
+
+    def set_msg(self):
+        self.msg = ''.join(key + ' : ' + str(len(val)) + '  ' for key, val in self.groups.items())
+
+
+class FrameCounter(DisplayText):
+    def __init__(self, manager, layer=forefront):
+        self.manager = manager
+        super().__init__(layer, config.SCREEN_WIDTH - 50, config.SCREEN_HEIGHT - 40)
+    
+    def set_msg(self):
+        self.msg = 'Frame : ' + str(self.manager.timer)
+
+
+class itemMessage(DisplayText):
+    def __init__(self, x, y, layer=1):
+        self.life = 20
+        super().__init__(layer, x, y, 'upgrade!')
+
+    def update(self):
+        self.set_img()
+        if self.rect:
+            self.rect.move_ip(0, -1)
+        self.life -= 1
+        if self.life <= 0: self.kill()
+
+
+class BossHp(DisplayText):
+    def __init__(self, boss, layer = forefront):
+        self.boss = boss
+        super().__init__(layer, boss.rect.centerx, boss.rect.centery)
+    
+    def set_msg(self):
+        if self.boss.alive():
+            self.msg = str(self.boss.hp)
+        else:
+            self.kill()
+    
+
+class Example(pg.sprite.Sprite):
+    def __init__(self):
+        pg.sprite.Sprite.__init__(self, self.containers)
+    
+    def update(self):
+        pass
