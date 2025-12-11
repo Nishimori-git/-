@@ -1,1 +1,19 @@
+import sys
+import tkinter as tk
+from PIL import Image, ImageTk
 
+# GUI設定
+root = tk.Tk()
+root.title("アニメーション")
+
+# キャンバスを作成
+cvs = tk.Canvas(root, width=1920, height=1080)
+cvs.pack()
+
+# 画像を作成（PhotoImage を root に保持させる）
+root.sky = ImageTk.PhotoImage(Image.open("haikei.png"))
+
+# 画像をキャンバスに配置
+cvs.create_image(0, 0, image=root.sky, anchor=tk.NW)
+
+root.mainloop()
