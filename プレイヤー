@@ -1,7 +1,21 @@
-import sys
 import pygame as pg
-
-class ant(pygame.sprite.Sprite):
-  def __init__ (self,  ) #画像ファイルを入力
-    self.image = pygame.image.load(   ).convert()
+import sys
+    
+class player(pygame.sprite.Sprite):
+  gravity = 1
+  jump_power = -10
+  speed = 3
+  
+  def __init__ (self,Player.png) 　#画像ファイルを入力
+    self.image = pygame.image.load(Player.png).convert()
+    self.image = pygame.transform.scale(Player.png,(100,50))
+    self.bangimage = pygame.image.load() 　#ゲームオーバー時の画像
     self.rect = self.image.get_rect()
+  def disp(self):
+  def play(self):
+    player_vel_y += gravity
+    player_pos[1] += player_vel_y
+
+  def start(self):
+    
+    
