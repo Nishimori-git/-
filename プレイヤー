@@ -1,6 +1,7 @@
-import pygame as pg
 import sys
-    
+import pygame
+from pygame.locals import * # pygame.localsから＊をインポートしてPygameの定数を直接使用できるように
+
 class player(pygame.sprite.Sprite):
   gravity = 1
   jump_power = -10
@@ -10,11 +11,16 @@ class player(pygame.sprite.Sprite):
     self.image = pygame.image.load(Player.png).convert()
     self.image = pygame.transform.scale(Player.png,(100,50))
     self.bangimage = pygame.image.load() 　#ゲームオーバー時の画像
+    self.bangimage = pygame.transform.scale(  ,(50,50))
     self.rect = self.image.get_rect()
   def disp(self):
   def play(self):
     player_vel_y += gravity
     player_pos[1] += player_vel_y
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE and not jump_now
+            player_vel_y = jump_power
+            jump_now = True
 
   def start(self):
     
