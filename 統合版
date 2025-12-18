@@ -1,6 +1,8 @@
 import sys
 import tkinter as tk
 from PIL import Image, ImageTk
+import pygame
+from pygame.locals import * # pygame.localsから＊をインポートしてPygameの定数を直接使用できるように
 
 # GUI設定
 root = tk.Tk()
@@ -22,5 +24,33 @@ x = 800 // 2
 y = 600 // 2
 
 cvs.create_image(x, y, image=root.ari, anchor=tk.CENTER)
+
+class player(pygame.sprite.Sprite):
+  gravity = 1
+  jump_power = -10
+  speed = 3
+  
+  def __init__ (self,Player.png) 　#画像ファイルを入力
+    self.image = pygame.image.load(ari.png).convert()
+    self.image = pygame.transform.scale(ari.png,(100,50))
+    self.bangimage = pygame.image.load() 　#ゲームオーバー時の画像
+    self.bangimage = pygame.transform.scale(  ,(50,50))
+    self.rect = self.image.get_rect()
+  def start(self):
+
+  def disp(self):
+    screen.blit(self.image,(20,5)
+    
+  def play(self):
+    player_vel_y += gravity
+    player_pos[1] += player_vel_y
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE and not jump_now
+            player_vel_y = jump_power
+            jump_now = True
+    if self.rect.left < 5:
+        screen.blit(self.bangimage,(self.rect))
+        pygame.time.wait(2000) #2秒後にゲームオーバーの画面表示を行う
+        screen.blit()
 
 root.mainloop()
