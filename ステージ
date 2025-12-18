@@ -15,7 +15,7 @@ root.sky = ImageTk.PhotoImage(Image.open("haikei.png"))
 cvs.create_image(0, 0, image=root.sky, anchor=tk.NW)
 
 # キャラクター画像（128×151）
-root.ari = ImageTk.PhotoImage(Image.open("ari.png"))
+root.ari = ImageTk.PhotoImage(Image.open("player.png"))
 
 # 画面中央付近に配置
 x = 800 // 2
