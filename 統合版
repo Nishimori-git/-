@@ -39,7 +39,7 @@ class player(pygame.sprite.Sprite):
   def start(self):
 
   def disp(self):
-    screen.blit(self.image,(20,5)
+    screen.blit(self.image,(300,500)
     
   def play(self):
     player_vel_y += gravity
