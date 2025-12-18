@@ -1,26 +1,29 @@
 import sys
-import tkinter as tk
-from PIL import Image, ImageTk
+import pygame
+from pygame.locals import QUIT
 
-# GUI設定
-root = tk.Tk()
-root.title("アニメーション")
+# pygame初期化
+pygame.init()
+SURFACE = pygame.display.set_mode((800, 600))
+FPSCLOCK = pygame.time.Clock()
 
-# キャンバスを作成
-cvs = tk.Canvas(root, width=800, height=600)
-cvs.pack()
+# 画像読み込み
+background = pygame.image.load("haikei.png").convert()
+player_img = pygame.image.load("player.png").convert_alpha()
 
-# 背景画像
-root.sky = ImageTk.PhotoImage(Image.open("haikei.png"))
-cvs.create_image(0, 0, image=root.sky, anchor=tk.NW)
+# キャラの位置
+player_rect = player_img.get_rect()
+player_rect.center = (200, 100)
 
-# キャラクター画像（128×151）
-root.ari = ImageTk.PhotoImage(Image.open("player.png"))
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
 
-# 画面中央付近に配置
-x = 800 // 2
-y = 600 // 2
+    # 描画
+    SURFACE.blit(background, (0, 0))      # 背景
+    SURFACE.blit(player_img, player_rect) # キャラ
 
-cvs.create_image(x, y, image=root.ari, anchor=tk.CENTER)
-
-root.mainloop()
+    pygame.display.update()
+    FPSCLOCK.tick(60)
