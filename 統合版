@@ -1,1 +1,26 @@
+import sys
+import tkinter as tk
+from PIL import Image, ImageTk
 
+# GUI設定
+root = tk.Tk()
+root.title("アニメーション")
+
+# キャンバスを作成
+cvs = tk.Canvas(root, width=800, height=600)
+cvs.pack()
+
+# 背景画像
+root.sky = ImageTk.PhotoImage(Image.open("haikei.png"))
+cvs.create_image(0, 0, image=root.sky, anchor=tk.NW)
+
+# キャラクター画像（128×151）
+root.ari = ImageTk.PhotoImage(Image.open("player.png"))
+
+# 画面中央付近に配置
+x = 800 // 2
+y = 600 // 2
+
+cvs.create_image(x, y, image=root.ari, anchor=tk.CENTER)
+
+root.mainloop()
