@@ -8,8 +8,8 @@ class player(pygame.sprite.Sprite):
   speed = 3
   
   def __init__ (self,Player.png) 　#画像ファイルを入力
-    self.image = pygame.image.load(Player.png).convert()
-    self.image = pygame.transform.scale(Player.png,(100,50))
+    self.image = pygame.image.load(ari.png).convert()
+    self.image = pygame.transform.scale(ari.png,(100,50))
     self.bangimage = pygame.image.load() 　#ゲームオーバー時の画像
     self.bangimage = pygame.transform.scale(  ,(50,50))
     self.rect = self.image.get_rect()
