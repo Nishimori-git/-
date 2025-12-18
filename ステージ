@@ -13,7 +13,7 @@ player_img = pygame.image.load("player.png").convert_alpha()
 
 # キャラの位置
 player_rect = player_img.get_rect()
-player_rect.center = (200, 100)
+player_rect.center = (200, 500)
 
 while True:
     for event in pygame.event.get():
