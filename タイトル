@@ -12,7 +12,7 @@ def title():
                 pygame.quit()
                 sys.exit()
             if event.type == KEYDOWN and event.key == K_SPACE:
-                return  # ← main() に戻る
+                return 
 
         screen.blit(title_img, (0, 0))
         pygame.display.update()
