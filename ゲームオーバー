@@ -1,0 +1,18 @@
+import sys
+import pygame
+from pygame.locals import *
+
+def gameover(screen, clock):
+    gameover_img = pygame.image.load("gameover.png").convert()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN and event.key == K_SPACE:
+                return
+
+        screen.blit(gameover_img, (0, 0))
+        pygame.display.update()
+        clock.tick(60)
