@@ -1,0 +1,17 @@
+import pygame
+from image_loader import load_image, draw_center
+
+class Title:
+    def __init__(self, screen):
+        self.screen = screen
+        self.image = load_image("images/title.png")
+
+    def update(self, events):
+        for event in events:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    return "MAIN"
+        return "TITLE"
+
+    def draw(self):
+        draw_center(self.screen, self.image)
