@@ -1,17 +1,19 @@
-import pygame
-from image_loader import load_image, draw_center
+def title():
+    pygame.init()
+    screen = pygame.display.set_mode((1000, 300))
+    pygame.display.set_caption("逃げるはアリだが役に立つ")
+    clock = pygame.time.Clock()
 
-class Title:
-    def __init__(self, screen):
-        self.screen = screen
-        self.image = load_image("images/title.png")
+    title_img = pygame.image.load("title.png").convert()
 
-    def update(self, events):
-        for event in events:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    return "MAIN"
-        return "TITLE"
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN and event.key == K_SPACE:
+                return  # ← main() に戻る
 
-    def draw(self):
-        draw_center(self.screen, self.image)
+        screen.blit(title_img, (0, 0))
+        pygame.display.update()
+        clock.tick(60)
