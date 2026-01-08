@@ -4,5 +4,21 @@
 ＃画面スクロール
 ＃障害物判定
 
+#
+bg_x = 0
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quite()
+            sys.exit()
 
+     bg_x -= 2
+     if bg_x <= -screen_width:
+         bg_x = 0
+
+     screen.blit(background, (bg_x, 0))
+     screen.blit(background, (bg_x + screen_width, 0))
+
+     pygame.display.update()
+     pygame.time.Clock().tick(60)
 
