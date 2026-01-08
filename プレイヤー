@@ -23,10 +23,14 @@ def main():
               player.jump()
 
       if pygame.sprite.collide_rect(player, rock):
-          player.speed = max(1, 5 - rock.slow)
+          player.rect.x -= 20
+          player.hit = True
+          player.hittime = 50
 
       elif pygame.sprite.collide_rect(player, water):
-          player.speed = max(1, 5 - water.slow)
+          player.rect.x -= 10
+          player.hit = True
+          player.hittime = 40
 
       player.update()
       rock.update(scroll_speed)
