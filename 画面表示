@@ -27,3 +27,17 @@ while True:
      pygame.display.update()
      pygame.time.Clock().tick(60)
 
+
+
+
+
+
+#足場の作成
+
+blocks = [
+
+    pygame.Rect(0, 400, 640, 40),
+    pygame.Recct()
+]
+
+
