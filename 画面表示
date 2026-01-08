@@ -4,17 +4,22 @@
 ＃画面スクロール
 ＃障害物判定
 
-#
+#背景初期位置
 bg_x = 0
+
+#ゲームループ
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quite()
             sys.exit()
-
-     bg_x -= 2
+#スクロールの実装
+     bg_x -= 2  #スクロール速度-2ピクセルずつ移動
+#背景が画面外に出たらリセット
      if bg_x <= -screen_width:
          bg_x = 0
+
+#背景を2枚並べて描画
 
      screen.blit(background, (bg_x, 0))
      screen.blit(background, (bg_x + screen_width, 0))
