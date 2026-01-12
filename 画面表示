@@ -37,8 +37,8 @@ while True:
 
 blocks = [
 
-    pygame.Rect(0, 100, , 300, 10),
-    pygame.Recct(200, 200, 300, 10)
+    pygame.Rect(1000, 100, , 300, 10),
+    pygame.Recct(1000, 200, 300, 10)
 ]
 
 scroll_speed = 5
