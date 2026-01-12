@@ -6,7 +6,8 @@ import sys
 def main():
     pygame.init()
     pygame.mixer.init()
-    screen = pygame.display.set_mode((1000, 300))
+    WIDTH, HEIGHT = 1000, 300
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
     background = pygame.image.load("haikei_1000_300.png").convert()
     pygame.display.set_caption("逃げるはアリだが役に立つ")
     clock = pygame.time.Clock()
