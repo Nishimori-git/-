@@ -41,6 +41,8 @@ blocks = [
     pygame.Recct(200, 200, 300, 10)
 ]
 
+scroll_speed = 5
+
 #当たり判定
 
 for block in blocks:
