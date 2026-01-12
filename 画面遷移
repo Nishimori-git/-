@@ -1,14 +1,25 @@
-import sys
 import pygame
-from pygame.locals import *
+from title import title_loop
+from game import game_loop
+from gameover import gameover_loop
 
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))
 
-# 表示
+    state = "TITLE"
 
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 300
+    while True:
+        if state == "TITLE":
+            state = title_loop(screen)
+        elif state == "GAME":
+            state = game_loop(screen)
+        elif state == "GAMEOVER":
+            state = gameover_loop(screen)
+        else:
+            break
 
-STATE_TITLE = "TITLE"
-STATE_SETUMEI = "SETUMEI"
-STATE_GAME = "GAME"
-STATE_GAMEOVER = "GAMEOVER"
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
