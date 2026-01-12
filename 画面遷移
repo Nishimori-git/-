@@ -1,0 +1,14 @@
+import sys
+import pygame
+from pygame.locals import *
+
+
+# 表示
+
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 300
+
+STATE_TITLE = "TITLE"
+STATE_SETUMEI = "SETUMEI"
+STATE_GAME = "GAME"
+STATE_GAMEOVER = "GAMEOVER"
