@@ -98,12 +98,14 @@ game_over = False
 
 #残り時間計算
 elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
-remaining_time = TIME_LIMIT - elapsed_time
+#remaining_time = TIME_LIMIT - elapsed_time
     
-if remainig_time <= 0:
-    remainig_time = 0
-    game_over = True
+#if remainig_time <= 0:
+    #remainig_time = 0
+    #game_over = True
 
-time_text = font.render(f"Time: {remaining_time}", True, (0, 0, 0))
+#time_text = font.render(f"Time: {remaining_time}", True, (0, 0, 0))
+
+time_text = font.render(f"Time: {elapsed_time}", True, (0, 0, 0))
 
 screen.blit(time_text, (900, 10))
