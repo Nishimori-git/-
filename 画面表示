@@ -78,11 +78,18 @@ if player_rect.bottom > HEIGHT:
 
 
 #スコア表示
+import pygame
+pygame.init()
+
+font = pygame.font.Font(None, 36)
+
+
 
 TIME_LIMIT = 60  #制限時間
 start_time = pygame.time.get_ticks()
 game_over = False
 
+#残り時間計算
 elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
 remaining_time = TIME_LIMIT - elapsed_time
     
@@ -90,3 +97,6 @@ if remainig_time <= 0:
     remainig_time = 0
     game_over = True
 
+time_text = font.render(f"Time: {remaining_time}", True, (0, 0, 0))
+
+screen.blit(time_text, (900, 10))
