@@ -4,30 +4,6 @@
 ＃画面スクロール
 ＃障害物判定
 
-#背景初期位置
-bg_x = 0
-
-#ゲームループ
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quite()
-            sys.exit()
-#スクロールの実装
-     bg_x -= 2  #スクロール速度-2ピクセルずつ移動
-#背景が画面外に出たらリセット
-     if bg_x <= -screen_width:
-         bg_x = 0
-
-#背景を2枚並べて描画
-
-     screen.blit(background, (bg_x, 0))
-     screen.blit(background, (bg_x + screen_width, 0))
-
-     pygame.display.update()
-     pygame.time.Clock().tick(60)
-
-
 
 
 
@@ -37,7 +13,7 @@ while True:
 
 blocks = [
 
-    pygame.Rect(1000, 100, , 300, 10),
+    pygame.Rect(800, 100, , 300, 10),
     pygame.Recct(1000, 200, 300, 10)
 ]
 
@@ -63,6 +39,31 @@ for block in blocks:
 
 
 
+#イベントの定義
+t = random.randist(1000, 5000)
+
+ADDBLOCKS = pygame.USEREVENT + 1
+pygame.time.set_timer(ADDBLOCKS, t)
+
+
+#オブジェクトの初期化
+player = player()
+blocks = pygame.sprite.Group()
+all_sprites = pygame.sprite.Group()
+clock = pygame.time.Clock()
+
+
+
+while running:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            running = False
+
+        elif event.type == ADDBLOCKS:
+            new_blocks = Blocks[]
+            blocks.add(new_blocks)
+            all_sprite.add(new_enemy)
+        
 
 
 
