@@ -74,3 +74,19 @@ if player_rect.top < 0:
     player_rect.top = 0
 if player_rect.bottom > HEIGHT:
     player_rect.bottom = HEIGHT
+
+
+
+#スコア表示
+
+TIME_LIMIT = 60  #制限時間
+start_time = pygame.time.get_ticks()
+game_over = False
+
+elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
+remaining_time = TIME_LIMIT - elapsed_time
+    
+if remainig_time <= 0:
+    remainig_time = 0
+    game_over = True
+
