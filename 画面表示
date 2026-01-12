@@ -33,11 +33,29 @@ while True:
 
 
 #足場の作成
+#x,y,幅,高さ
 
 blocks = [
 
-    pygame.Rect(0, 400, 640, 40),
-    pygame.Recct()
+    pygame.Rect(0, 100, , 300, 10),
+    pygame.Recct(200, 200, 300, 10)
 ]
+
+#当たり判定
+
+for block in blocks:
+    if player_rect.colliderect(block):
+
+#もし重力を表すコードがなければ必須記入
+
+gravity = 1
+dy += gravity
+
+player_rect.y += dy
+
+for block in blocks:
+    if player_rect.colliderect(block):
+        player_rect.bottom = block.top
+        dy = 0
 
 
