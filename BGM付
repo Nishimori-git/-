@@ -1,12 +1,16 @@
 import sys
 import pygame
 from pygame.locals import*
+pygame.init()
 import sys
+import random
 
 STATE_TITLE = 0
 STATE_SETUMEI = 1
 STATE_GAME = 2
 STATE_GAMEOVER = 3
+
+font = pygame.font.Font(None, 36)
 
 def main():
     pygame.init()
@@ -46,16 +50,21 @@ def game_loop(screen):
     background = pygame.image.load("haikei_1000_300.png").convert()
 
     #画像の配置を決定（ランダム生成の時は多分ここの数値をいじる）
+    x1 = random.randint(200, 400)
+    x2 = random.randint(800, 900)
+    x3 = random.randint(200, 1000)
     player = Player("Player.png")
-    rock = Rock("Rock.png", 700, 240)
-    water = Water("Water.png", 1000, 240)
-    candy = Candy("Candy.png", 700, 180)
+    rock = Rock("Rock.png", x1, 240)
+    water = Water("Water.png", x2, 240)
+    candy = Candy("Candy.png", x3, 180)
     mountain = Mountain("Mountain.png",300, 330)
     hill = Hill("Hill.png",800, 345)
     foot = Foot("foot.png",0, 300)
     plate = Plate("Plate.png",1000, 320)
     scroll_speed = 5
-    
+
+    start_time = pygame.time.get_ticks()
+    STATE_GAMEOVER = False
 
     while True:
       for event in pygame.event.get(): #ジャンプ処理
@@ -102,6 +111,13 @@ def game_loop(screen):
           return STATE_GAMEOVER
           player.rect.x = 400
 
+      #時間表示
+      elapsed_time = (pygame.time.get_ticks() - start_time) // 1000
+      time_text = font.render(f"Time: {elapsed_time}", True, (0, 0, 0))
+      screen.blit(time_text, (850, 10))
+      pygame.display.flip()
+
+
       player.update()
       rock.update(scroll_speed)
       water.update(scroll_speed)
@@ -121,7 +137,7 @@ def game_loop(screen):
       screen.blit(water.image, water.rect)
       screen.blit(candy.image, candy.rect)
 
-      pygame.display.update()
+      #pygame.display.update()
       clock.tick(60)
         
 
@@ -248,14 +264,16 @@ class Rock(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
-        self.speed = 6
+        
+        s1 = random.randint(2, 4)
+        self.speed = s1
         self.slow = 2
 
     def update(self,scroll_speed):
         self.rect.x -= self.speed
-       
+        sr1 = random.randint(700, 1000)
         if self.rect.x <= 0:
-           self.rect.x = 1000
+           self.rect.x = sr1
 
 class Water(pygame.sprite.Sprite):
     def __init__(self, image_path,x,y):
@@ -264,13 +282,14 @@ class Water(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (180, 90))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
-        self.slow = 4
+        s2 = random.randint(0, 2)
+        self.slow = s2
 
     def update(self,scroll_speed):
         self.rect.x -= scroll_speed
-
+        sr2 = random.randint(700, 1000)
         if self.rect.x <= 0:
-           self.rect.x = 1000
+           self.rect.x = sr2
 
 class Candy(pygame.sprite.Sprite):
     def __init__(self, image_path,x,y):
@@ -279,13 +298,13 @@ class Candy(pygame.sprite.Sprite):
          self.image = pygame.transform.scale(self.image, (50,50))
          self.rect = self.image.get_rect()
          self.rect.topleft = (x,y)
-
-         self.speed = 4
+         s3 = random.randint(3, 6)
+         self.speed = s3
     def update(self,scroll_speed):
         self.rect.x -= self.speed
-
+        sr3 = random.randint(700, 1000)
         if self.rect.x <= -700:
-           self.rect.x = 1000
+           self.rect.x = sr3
 
 class Mountain(pygame.sprite.Sprite):
     def __init__(self, image_path,x,y):
